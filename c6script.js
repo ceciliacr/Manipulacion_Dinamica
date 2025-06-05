@@ -1,11 +1,11 @@
 /* crea variables */
 /* Accedemos a los id definidos en el HTML */
 /* Hacemos crear una constante para cada elemento que desea interactuar */
-    const contenedorDinamico  =document.getElementById('contenedorDinamico');  /* Acceder al contenedor x ID */
-    const cambiarContenidoBtn =document.getElementById('cambiarContenidoBtn'); /* Acceder al boton x  ID */
-    const crearElementoBtn    =document.getElementById('crearElementoBtn');    /* Acceder al boton x  ID */
-    const cambiarEstiloBtn    =document.getElementById('cambiarEstiloBtn');    /* Acceder al boton x ID */
- 
+const contenedorDinamico  =document.getElementById('contenedorDinamico');  /* Acceder al contenedor x ID */
+const cambiarContenidoBtn =document.getElementById('cambiarContenidoBtn'); /* Acceder al boton x  ID */
+const crearElementoBtn    =document.getElementById('crearElementoBtn');    /* Acceder al boton x  ID */
+const cambiarEstiloBtn    =document.getElementById('cambiarEstiloBtn');    /* Acceder al boton x ID */
+let   estadocambio  = true; 
 
 cambiarContenidoBtn.addEventListener('click',function () {
     const parrafo = contenedorDinamico.querySelector('p'); /* queryselect accedo a la etiqueta p*/
@@ -31,10 +31,21 @@ crearElementoBtn.addEventListener('click',function () {
 
  /* cambiar el estilo  cambiarEstiloBtn */
  cambiarEstiloBtn.addEventListener('click',()=>{
-     const parrafo      = contenedorDinamico.querySelector('p');
-     parrafo.style.fontFamily ='Segoe UI, Tahoma, Geneva, Verdana, sans-serif';
-     parrafo.style.fontSize = '20px'
-     parrafo.style.textAlign = "center";    
-     parrafo.style.color='Green';
-     parrafo.style.fontWeight = 'bold';
+  if (estadocambio){
+    const parrafo      = contenedorDinamico.querySelector('p');
+    parrafo.style.fontFamily ='Segoe UI, Tahoma, Geneva, Verdana, sans-serif';
+    parrafo.style.fontSize = '20px'
+    parrafo.style.textAlign = "center";    
+    parrafo.style.color='Green';
+    parrafo.style.fontWeight = 'bold';
+    contenedorDinamico.id="";
+    contenedorDinamico.classList.toggle("resultado");
+    estadocambio = false;
+  }else{
+    contenedorDinamico.classList.remove("resultado");
+    contenedorDinamico.id="contenedorDinamico";
+    contenedorDinamico.classList.add("contenedorDinamico");
+    estadocambio = true;
+  }
+
  })
